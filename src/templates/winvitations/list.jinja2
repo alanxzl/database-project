@@ -1,0 +1,66 @@
+{% extends "base.jinja2" %}
+{% block content %}
+<div class="container">
+    <h2>Hi {{ unick }}! Here are your Invitations.</h2>
+
+    <p><a class="btn btn-primary btn-lg" href="{{ url_for('users.personal_center') }}" role="button">Personal Center</a></p>
+    <hr>
+    	<div class="tabbable" id="tabs-514797">
+			<ul class="nav nav-tabs">
+				<li class="nav-item">
+					<a class="nav-link" active show href="#tab1" data-toggle="tab">Workspace invitation</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active show" href="#tab2" data-toggle="tab">Channel Invitation</a>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active" id="tab1">
+					<p>
+                        {% if lists|length > 0 %}
+                            {% for winvitation in lists %}
+                                {% if winvitation.is_accepted %}
+                                    <h3>Invitation from {{ winvitation.adminname }} into workspace: {{ winvitation.wname }}</h3>
+                                    <div class="alert alert-success role="alert">You have accepted this invitation</div>
+                                {% else %}
+                                    <h3>Invitation from {{ winvitation.adminname }} into workspace: {{ winvitation.wname }}</h3>
+                                    <div class="alert alert-warning" role="alert">You haven't accept this invitation</div>
+                                {% endif %}
+                                {{ winvitation.stamp }}
+                                <p class="text-right">
+                                <a class="btn btn-info btn-sm" href="{{ url_for('winvitations.accept_invitation', winvid=winvitation._id) }}" role="button">Accept</a> </p>
+                                <hr>
+                            {% endfor %}
+                        {% else %}
+                            <h4>There aren't any workspace invitations to you yet!</h4>
+                        {% endif %}
+					</p>
+				</div>
+				<div class="tab-pane" id="tab2">
+					<p>
+						{% if clists|length > 0 %}
+                            {% for cinvitation in clists %}
+                                {% if cinvitation.is_accepted %}
+                                    <h3>Invitation from {{ cinvitation.adminname }} into channel: {{ cinvitation.cname }}</h3>
+                                    <div class="alert alert-success role="alert">You have accepted this invitation</div>
+                                {% else %}
+                                    <h3>Invitation from {{ cinvitation.adminname }} into channel: {{ cinvitation.cname }}</h3>
+                                    <div class="alert alert-warning" role="alert">You haven't accept this invitation</div>
+                                {% endif %}
+                                {{ cinvitation.stamp }}
+                                <p class="text-right">
+                                <a class="btn btn-info btn-sm" href="{{ url_for('cinvitations.accept_invitation', cinvid=cinvitation._id) }}" role="button">Accept</a> </p>
+                                <hr>
+                            {% endfor %}
+                        {% else %}
+                            <h4>There aren't any channel invitations to you yet!</h4>
+                        {% endif %}
+					</p>
+				</div>
+			</div>
+		</div>
+
+    <p><a class="btn btn-primary btn-lg" href="{{ url_for('users.personal_center') }}" role="button">Personal Center</a></p>
+</div>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.jinja2" %}
+{% block content %}
+    <div class="jumbotron">
+        <h1>Personal Center</h1>
+        <p>Hi {{ unick }}!</p>
+        <p><font-size=10>Your email:{{ email }}</font></p>
+        <p> Your personal id is: {{ user_id }} </p>
+        <p>Welcome to our system</p>
+        <br>
+        <p><a class="btn btn-primary btn-lg" href="{{ url_for('workspaces.workspace_list') }}" role="button">My workspaces</a>
+        <a class="btn btn-primary btn-lg" href="{{ url_for('channels.channel_list_by_uid') }}" role="button">My channels</a></p>
+    </div>
+{% endblock %}

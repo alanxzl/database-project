@@ -1,0 +1,90 @@
+{% extends "base.jinja2" %}
+{% block content %}
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+          <img src="https://images.unsplash.com/photo-1533282960533-51328aa49826?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1930&q=80" alt="">
+      <div class="carousel-caption">
+        <h1>CS 6083-Course Project 2</h>
+        <h2>Saitong Zhao</h>
+        <h2>Zuolun Xiao</h>
+      </div>
+      <center>Flask + Bootstrap3.0 + Mysql/MongoDB</center>
+    </div>
+    <div class="item">
+      <img src="https://images.unsplash.com/photo-1539268161753-702bb6f404f0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1857&q=80" alt="...">
+      <div class="carousel-caption">
+        <h1>Create a workspace for your company/orgnization</h>
+      </div>
+    </div>
+    <div class="item">
+      <img src="https://images.unsplash.com/photo-1539267578276-47bf173b3bfa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1857&q=80" alt="...">
+      <div class="carousel-caption">
+        <h1>Do you know?</h>
+        <h2>There are three type of channels.</h>
+      </div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
+    <div class="jumbotron">
+        {% if session['email'] %}
+            <h1>Personal Center</h1>
+            <p>Hi {{ unick }}</p>
+            <p><font-size=10>Your email:{{ session['email'] }}</font></p>
+            <p>Welcome back!</p>
+            <br>
+            <p><a class="btn btn-primary btn-lg" href="{{ url_for('workspaces.workspace_list') }}" role="button">My workspaces</a>
+            <a class="btn btn-primary btn-lg" href="{{ url_for('channels.channel_list_by_uid') }}" role="button">My channels</a></p>
+        {% else %}
+            <h1>This is Not Slack</h1>
+            <p>Organize your company by workspaces and different channels</p>
+            <p>Group up people with same interests</p>
+            <p><a class="btn btn-primary btn-lg" href="{{ url_for('users.register_user') }}" role="button">Register Now!</a></p>
+        {% endif %}
+    </div>
+
+
+<div class="media">
+  <div class="media-left media-middle">
+    <a href="#">
+      <img class="media-object" src="https://www.layoutit.com/img/sports-q-c-64-64-8.jpg" alt="...">
+    </a>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading">Middle aligned media</h4>
+    Content
+  </div>
+</div>
+<div class="media">
+  <div class="media-left media-middle">
+    <a href="#">
+      <img class="media-object" src="https://www.layoutit.com/img/sports-q-c-64-64-2.jpg" alt="...">
+    </a>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading">Middle aligned media</h4>
+    Content
+  </div>
+</div>
+{% endblock %}
+

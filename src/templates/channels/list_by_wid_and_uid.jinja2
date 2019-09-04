@@ -1,0 +1,67 @@
+{% extends "base.jinja2" %}
+{% block content %}
+<div class="container">
+    <h2>Hi {{ unick }}! You have log into Workspace: <span class="label label-default">{{ wname }}</span></h2>
+    <p><a class="btn btn-primary btn-lg" href="{{ url_for('channels.create_channel') }}" role="button">New Channel</a>
+    <a class="btn btn-primary btn-lg" href="{{ url_for('winvitations.create_winvitation') }}" role="button">Invite User</a>
+    <a class="btn btn-primary btn-lg" href="{{ url_for('users.personal_center') }}" role="button">Personal Center</a></p>
+    <hr>
+    <a class="btn btn-success btn-sm" role="button">Public Channel</a>
+    <a class="btn btn-info btn-sm" role="button">Private Channel</a>
+    <a class="btn btn-warning btn-sm" role="button">Direct Channel</a>
+    <hr>
+    <div class="container">
+    {% if public_list|length > 0 %}
+        <h2><span class="label label-success">Public Channels:</span></h2>
+
+        <br>
+        <div class="row">
+                {% for channel in public_list %}
+                    <div class="col-md-6">
+                        <h3>{{ channel.cname }}</h3>
+                        {{ channel.cdescript }}
+                        <p class="text-right">
+                            <a class="btn btn-primary btn-sm" href={{ url_for('cinvitations.join_public', cid=channel._id) }} role="button">Join Channel</a>
+                            <a class="btn btn-success btn-sm" href="{{ url_for('messages.list_message', cid=channel._id) }}" role="button">Enter Channel</a>
+                        </p>
+                        <hr>
+                    </div>
+                {% endfor %}
+        </div>
+    {% else %}
+        <h2><span class="label label-success">You haven't join any public channels in workspace: "{{ wname }}".</span></h2>
+        <hr>
+    {% endif %}
+    <hr>
+    {% if private_list|length > 0 %}
+        <h2><span class="label label-info"> Private Channels: </span></h2>
+        <br>
+        {% for channel in private_list %}
+            <h3>{{ channel.cname }}</h3>
+            <p class="text-right"> <a class="btn btn-info btn-sm" role="button">Enter Channel</a>
+            </p>
+            {{ channel.cdescript }}
+            <hr>
+        {% endfor %}
+    {% else %}
+        <h2><span class="label label-info">You haven't join any private channels in workspace: "{{ wname }}".</span></h2>
+        <hr>
+    {% endif %}
+    <hr>
+    {% if direct_list|length > 0 %}
+        <h2><span class="label label-warning"> Direct Channels:</span> </h2>
+        <br>
+        {% for channel in direct_list %}
+            <h3>{{ channel.cname }}</h3>
+            <p class="text-right"> <a class="btn btn-warning btn-sm" role="button">Enter Channel</a> </p>
+            {{ channel.cdescript }}
+            <hr>
+        {% endfor %}
+    {% else %}
+        <h2><span class="label label-warning">You haven't join any direct channels in workspace: "{{ wname }}".</span></h2>
+        <hr>
+    {% endif %}
+    </div>
+</div>
+{% endblock %}
+

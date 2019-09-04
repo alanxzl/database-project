@@ -1,0 +1,32 @@
+{% extends "base.jinja2" %}
+{% block content %}
+    <div class="form">
+        <form action="{{ url_for('channels.create_channel') }}" method="post">
+            <div class="form-group">
+                <label for="cname">Channel Name</label>
+                <input type="cname" class="form-control" id="cname" name="cname" placeholder="e.g: Rick channel  Maximum length:50"
+                       aria-describedby="cnameHelpBlock">
+                <span id="cnameHelpBlock" class="help-block">Please select a name for this channel</span>
+            </div>
+            <div class="form-group">
+                <label for="cdescript">Channel Description</label>
+                <input type="cdescript" class="form-control" id="cdescript" name="cdescript"
+                placeholder="e.g: A pretty interesting channel  Maximum length:100" aria-describedby="cdescriptHelpBlock">
+                <span id="cdescriptHelpBlock" class="help-block">Short description for this Channel</span>
+            </div>
+            <div class="form-group">
+                <label class="radio-inline">
+                    <input type="radio" name="ctype" id="ctype" value="0"> public
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="ctype" id="ctype" value="1"> private
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="ctype" id="ctype" value="2"> direct
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-default">Create Now</button>
+        </form>
+    </div>
+{% endblock %}

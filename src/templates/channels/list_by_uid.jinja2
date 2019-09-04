@@ -1,0 +1,38 @@
+{% extends "base.jinja2" %}
+{% block content %}
+<div class="container">
+    <h2>{{ unick }}, Here are your channels.
+    <a class="btn btn-primary btn-lg" href="{{ url_for('users.personal_center') }}" role="button">Personal Center</a></h2>
+    <hr>
+    <h4>
+    <span class="label label-success"> Public Channel </span>
+    <span class="label label-info"> Private Channel </span>
+    <span class="label label-warning"> Direct Channel </span>
+
+    </h4>
+    <hr>
+
+    {% if lists|length > 0 %}
+    <div class="row pre-scrollable">
+        {% for channel in lists %}
+            {% if channel.ctype == 0 %}
+                <h3>{{ channel.cname }}</h3>
+                <p class="text-right"> <a class="btn btn-success btn-sm" href="{{ url_for('messages.list_message', cid=channel._id) }}" role="button">Enter Channel</a> </p>
+                {{ channel.cdescript }}
+            {% elif channel.ctype == 1 %}
+                <h3>{{ channel.cname }}</h3>
+                <p class="text-right"> <a class="btn btn-info btn-sm" href="{{ url_for('messages.list_message', cid=channel._id) }}" role="button">Enter Channel</a> </p>
+                {{ channel.cdescript }}
+            {% else %}
+                <h3>{{ channel.cname }}</h3>
+                <p class="text-right"> <a class="btn btn-warning btn-sm" href="{{ url_for('messages.list_message', cid=channel._id) }}" role="button">Enter Channel</a> </p>
+                {{ channel.cdescript }}
+            {% endif %}
+            <hr>
+        {% endfor %}
+    </div>
+    {% else %}
+        <h4>You haven't join channels yet!</h4>
+    {% endif %}
+</div>
+{% endblock %}

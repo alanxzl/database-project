@@ -1,0 +1,16 @@
+last update: 2019/4/7
+
+models: 后端逻辑
+    -constant 常量
+    -error 抛出异常
+    -views 页面逻辑
+templates: 前段模板
+css: 定位
+
+Util: 基本功能
+Database: 已迁移到 Mysql（兼容Mysql移除了十六进制uuid）
+User: 开发完成，待扩展
+Workspace: 基本功能完成
+Channel: To be develop
+Messagebox: To be develop
+InternalMessage: To be develop

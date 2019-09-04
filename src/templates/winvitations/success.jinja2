@@ -1,0 +1,11 @@
+{% extends "base.jinja2" %}
+{% block content %}
+    <div class="jumbotron">
+        <h1>Invitation successfully send</h1>
+
+        <br>
+        <p><a class="btn btn-primary btn-lg" href="{{ url_for('workspaces.workspace_list') }}" role="button">My workspaces</a>
+        <a class="btn btn-primary btn-lg" href="{{ url_for('channels.channel_list_by_uid') }}" role="button">My channels</a>
+        <a class="btn btn-primary btn-lg" href="{{ url_for('users.personal_center') }}" role="button">Personal Center</a></p>
+    </div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.jinja2" %}
+{% block content %}
+<div class="container">
+    <h2>Hi {{ unick }}!  You are in channel <span class="label label-default">{{ cname }}</span>
+    <a class="btn btn-primary btn-md" href="{{ url_for('users.personal_center') }}" role="button">Personal Center</a></h2>
+
+    <hr>
+
+    {% if lists|length > 0 %}
+    <div class="row pre-scrollable">
+        {% for message in lists %}
+            <div class="media">
+              <div class="media-left media-middle">
+                <a href="#">
+                  <img class="media-object" src="https://www.layoutit.com/img/sports-q-c-64-64-8.jpg" alt="...">
+                </a>
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">{{ message.unick   }}</h4>
+                {{ message.mcontext }}
+                <br>
+                <br>
+                <font size="1">Send by {{ message.stamp }}</font>
+              </div>
+            </div>
+            <hr>
+        {% endfor %}
+    </div>
+    {% else %}
+        <h4>No Message in channels yet!</h4>
+        <hr>
+    {% endif %}
+
+    <div class="form">
+        <div class="row">
+        <form action="{{ url_for('messages.new_message') }}" method="post">
+            <div class="col-md-9 col-md-offset-1">
+                <textarea class="form-control" rows="3" id="mcontext" name="mcontext" placeholder="Input your message here~"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

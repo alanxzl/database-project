@@ -1,0 +1,31 @@
+{% extends "base.jinja2" %}
+{% block content %}
+<div class="container">
+    <h2>Hi {{ unick }}! Here are your workspaces.</h2>
+    <p><a class="btn btn-primary btn-lg" href="{{ url_for('workspaces.create_workspace') }}" role="button">New workspace</a>
+    <a class="btn btn-primary btn-lg" href="{{ url_for('users.personal_center') }}" role="button">Personal Center</a></p>
+    <hr>
+    <div class="row">
+        {% if lists|length > 0 %}
+            {% for workspace in lists %}
+                <div class="col-md-4">
+                    <h2><span class="label label-default">{{ workspace.wname }}</span></h2>
+                    <p> <br>
+                        {{ workspace.wdescript }}
+                    <p>
+                    <p class="text-left">
+                    <a class="btn btn-info btn-sm" href="{{ url_for('channels.channel_list_by_wid_and_uid', wid=workspace._id) }}" role="button">Enter Workspace</a> </p>
+                    <hr>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h4>There aren't any workspaces yet!</h4>
+        {% endif %}
+    </div>
+    <div class="row">
+    <hr>
+    <p></p>
+    </div>
+</div>
+
+{% endblock %}
